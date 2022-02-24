@@ -17,9 +17,9 @@ const reviewSchema = new Schema(
 const movieSchema = new Schema({
     title: String,
     photoUrl: String,
-    author: String,
-    genres: [String],
-    categories: [String],
+    director: String,
+    genres: String,
+    platforms: String,
     releaseYear: Number,
     reviews: [reviewSchema]
   

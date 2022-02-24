@@ -1,4 +1,4 @@
-const Post = require('../models/post');
+const Movie = require('../models/movie');
 
 const { v4: uuidv4 } = require("uuid");
 const S3 = require("aws-sdk/clients/s3");
@@ -26,13 +26,13 @@ function create(req, res){
 		// We're inside of the response from aws 
 		try {
 			// model talking to mongodb
-			let post = await Post.create({
+			let movie = await Movie.create({
 				caption: req.body.caption,
 				user: req.user,
 				photoUrl: data.Location
 			})
 
-			post = await post.populate('user')
+			movie = await Movie.populate('user')
 
 			// respond to the client
 			// What file on the client can we log out this response?
@@ -57,7 +57,7 @@ async function index(req, res) {
 	  // this populates the user when you find the posts
 	  // so you'll have access to the users information
 	  // when you fetch teh posts
-	  const posts = await Post.find({}).populate("user").exec();
+	  const movie = await Movie.find({}).populate("user").exec();
 	  res.status(200).json({ posts: posts });
 	} catch (err) {
 	  res.status(400).json({ err });
