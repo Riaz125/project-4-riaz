@@ -36,16 +36,12 @@ export default function Feed({ user, handleLogout }) {
 //    }
 //  }
 
-  // C create in Crud
-  // we invoke this function in addPost component when the submit button on our form is clicked
-  // so we need to pass it as a prop
+
   async function handleAddMovie(movie) {
     try {
       setLoading(true);
-      const data = await moviesAPI.create(movie); // our server is going to return
-      // the created post, that will be inside of data, which is the response from
-      // the server, we then want to set it in state
-      console.log(data, " this is response from the server, in handleAddPost");
+      const data = await moviesAPI.create(movie);
+      console.log(data, " this is response from the server");
       setMovies([data.movie, ...movies]);
       setLoading(false);
     } catch (err) {
@@ -67,9 +63,6 @@ export default function Feed({ user, handleLogout }) {
     }
   }
 
-  // useEffect runs once
-  // the component is first rendered (whenever you first view the component)
-  // Component Lifecycle in react
   useEffect(() => {
     getMovies();
   }, []);

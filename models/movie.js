@@ -15,6 +15,7 @@ const reviewSchema = new Schema(
 );
 
 const movieSchema = new Schema({
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     title: String,
     photoUrl: String,
     director: String,

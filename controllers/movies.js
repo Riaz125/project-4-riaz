@@ -27,8 +27,12 @@ function create(req, res){
 		try {
 			// model talking to mongodb
 			let movie = await Movie.create({
-				caption: req.body.caption,
 				user: req.user,
+                title: req.body.title,
+                director: req.body.director,
+                genres: req.body.genres,
+                platforms: req.body.platforms,
+                releaseYear: req.body.releaseYear,
 				photoUrl: data.Location
 			})
 
@@ -36,7 +40,7 @@ function create(req, res){
 
 			// respond to the client
 			// What file on the client can we log out this response?
-			res.status(201).json({post})
+			res.status(201).json({movie})
 
 
 		} catch(err){
@@ -57,8 +61,8 @@ async function index(req, res) {
 	  // this populates the user when you find the posts
 	  // so you'll have access to the users information
 	  // when you fetch teh posts
-	  const movie = await Movie.find({}).populate("user").exec();
-	  res.status(200).json({ posts: posts });
+	  const movies = await Movie.find({}).populate("user").exec();
+	  res.status(200).json({ movies: movies });
 	} catch (err) {
 	  res.status(400).json({ err });
 	}

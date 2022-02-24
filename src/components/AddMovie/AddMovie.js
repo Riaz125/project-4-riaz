@@ -30,8 +30,10 @@ export default function AddMovieForm(props){
     const formData = new FormData()
     formData.append('photo', selectedFile); // this key matches the key in multer in the 
 	// routes/api/posts create route upload.single('photo')
-    formData.append('caption', state.caption)
-   
+    for (let key in state){
+        formData.append(key, state[key])
+    }
+
 	props.handleAddMovie(formData)
     // Have to submit the form now! We need a function!
   }
@@ -47,7 +49,7 @@ export default function AddMovieForm(props){
               <Form.Input
                   className="form-control"
                   name="title"
-                  value={state.caption}
+                  value={state.title}
                   placeholder="Enter Movie Title"
                   onChange={handleChange}
                   required
@@ -56,7 +58,7 @@ export default function AddMovieForm(props){
               <Form.Input
                   className="form-control"
                   name="director"
-                  value={state.caption}
+                  value={state.director}
                   placeholder="Enter Director"
                   onChange={handleChange}
                   required
@@ -65,7 +67,7 @@ export default function AddMovieForm(props){
               <Form.Input
                   className="form-control"
                   name="genres"
-                  value={state.caption}
+                  value={state.genres}
                   placeholder="Enter Genre"
                   onChange={handleChange}
                   required
@@ -74,7 +76,7 @@ export default function AddMovieForm(props){
               <Form.Input
                   className="form-control"
                   name="platforms"
-                  value={state.caption}
+                  value={state.platforms}
                   placeholder="Enter Streaming Platforms"
                   onChange={handleChange}
                   required
@@ -83,7 +85,7 @@ export default function AddMovieForm(props){
               <Form.Input
                   className="form-control"
                   name="releaseYear"
-                  value={state.caption}
+                  value={state.releaseYear}
                   placeholder="Enter Release Year"
                   onChange={handleChange}
                   required
@@ -101,7 +103,7 @@ export default function AddMovieForm(props){
                 type="submit"
                 className="btn"
               >
-                ADD PUPPY
+                ADD MOVIE
               </Button>
             </Form>
           </Segment>

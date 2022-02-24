@@ -41,17 +41,6 @@ function MovieCard({movie, isProfile, user}) {
 	
   return (
 	<Card key={movie._id} raised>
-	{isProfile ? (
-	  ""
-	) : (
-	  <Card.Content textAlign="left">
-		<Card.Header>
-		  <Link to={`/${movie.user.username}`}>
-			{movie.user.username}
-		  </Link>
-		</Card.Header>
-	  </Card.Content>
-	)}
 	<Image src={`${movie.photoUrl}`} wrapped ui={false} />
 	<Card.Content>
 	  <Card.Description>{movie.title}</Card.Description>
