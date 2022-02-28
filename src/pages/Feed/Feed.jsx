@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import AddMovie from "../../components/AddMovie/AddMovie";
 import MovieFeed from "../../components/MovieFeed/MovieFeed";
 import * as moviesAPI from "../../utils/movieApi";
-// import {create, getAll} from '../../utils/postApi'
+import * as ratingsAPI from '../../utils/ratingsApi'
 import { Grid } from "semantic-ui-react";
 
 export default function Feed({ user, handleLogout }) {
@@ -11,6 +11,17 @@ export default function Feed({ user, handleLogout }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   
+
+  async function addRating(movieId, rating) {
+    try {
+      const data = await ratingsAPI.create(movieId, rating);
+      console.log(rating, "rating");
+      console.log(data, " this if from addRating");
+      getMovies();
+    } catch (err) {
+      console.log(err.message, "addRating in Feed component error")
+    }
+  }
   // C create in Crud for Likes
   // we will invoke these functions when the heart is clicked in the post card,
   // so we need to pass the function down to the postCard in order for it to use it
@@ -86,7 +97,7 @@ export default function Feed({ user, handleLogout }) {
             numMoviesCol={1}
             isProfile={false}
             user={user}
-            //addLike={addLike}
+            addRating={addRating}
             loading={loading}
             //removeLike={removeLike}
           />

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon, Image, Rating } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 
-function MovieCard({movie, isProfile, user}) { 
+function MovieCard({movie, addRating, isProfile, user}) { 
 
 
   // post.likes = [{userId: 1234, username: 'jim', _id: 'likeId1234'}]
@@ -23,22 +23,38 @@ function MovieCard({movie, isProfile, user}) {
   // if not liked = -1 
 //  const likedIndex = post.likes.findIndex(like => like.username === user.username)
 
-//  // step 2 
-//  // if the user liked the post,
-//  // the heart should be red
-//  // else the heart should be grey
-//  const likeColor = likedIndex > -1 ? 'red' : 'grey';
+//  const ratingIndex = movie.rating.findIndex(rating => rating.username === user.username)
 
+////  // step 2 
+////  // if the user liked the post,
+////  // the heart should be red
+////  // else the heart should be grey
+////  const likeColor = likedIndex > -1 ? 'red' : 'grey';
+  
 
-//  // step 3 onClick Handler
-//  // if the user has liked the post, 
-//  // clickHandler = removeLike
-//  const clickHandler = likedIndex > -1 ? () => removeLike(post.likes[likedIndex]._id) : () => addLike(post._id)
-  // if the user hasn't liked the post
-  // clickHandler = addLike
+////  // step 3 onClick Handler
+////  // if the user has liked the post, 
+////  // clickHandler = removeLike
+////  const clickHandler = likedIndex > -1 ? () => removeLike(post.likes[likedIndex]._id) : () => addLike(post._id)
+//  // if the user hasn't liked the post
+//  // clickHandler = addLike
+let total = 0;
 
+movie.ratings.forEach(function(rating) {
+  total += rating.rating;
+});
 
-	
+let average = (total / movie.ratings.length);
+
+console.log(total, "total rating")
+console.log(movie.ratings.length, "ratings array length")
+console.log(average, "average")
+
+const handleRate = (e, { rating, maxRating }) => {
+    addRating(movie._id, rating)
+    console.log('handle rate is working')
+  }
+
   return (
 	<Card key={movie._id} raised>
 	<Image src={`${movie.photoUrl}`} wrapped ui={false} />
@@ -50,8 +66,8 @@ function MovieCard({movie, isProfile, user}) {
       <Card.Description>{movie.releaseYear}</Card.Description>
 	</Card.Content>
 	<Card.Content extra textAlign={"right"}>
-	  {/*<Icon name={"heart"} size="large" color={likeColor} onClick={clickHandler}/>*/}
-	  {/*{post.likes.length} Likes*/}
+  <Rating icon='star' maxRating={5} onRate={handleRate} />
+	  {average} Rating
 	</Card.Content>
   </Card>
   )

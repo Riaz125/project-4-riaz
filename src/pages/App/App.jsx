@@ -7,6 +7,7 @@ import Feed from "../Feed/Feed";
 import userService from "../../utils/userService";
 
 function App() {
+  
   const [user, setUser] = useState(userService.getUser());
 
   function handleSignUpOrLogin() {

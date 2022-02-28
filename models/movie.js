@@ -2,11 +2,10 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const reviewSchema = new Schema(
+const ratingSchema = new Schema(
   {
-    userId: {type: Schema.Types.ObjectId, ref:'User'},
+    user: {type: Schema.Types.ObjectId, ref:'User'},
     userName: String,
-    content: String,
     rating: { type: Number, min: 1, max: 5, default: 5 },
   },
   {
@@ -22,7 +21,7 @@ const movieSchema = new Schema({
     genres: String,
     platforms: String,
     releaseYear: Number,
-    reviews: [reviewSchema]
+    ratings: [ratingSchema]
   
   }, {
     timestamps: true
