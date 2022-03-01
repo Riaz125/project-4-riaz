@@ -36,8 +36,11 @@ async function create(req, res){
  async function update(req, res) {
 	console.log("update controller")
 	try {
-		const post = await Post.findOne({'rating._id': req.params.id, 'rating.userName': req.user.username});
-		await movieRating.save()
+		const movie = await Movie.findOne({'ratings._id': req.params.id, 'ratings.userName': req.user.username});
+		const rating = await movie.ratings.id(req.params.id);
+		rating.rating = req.body.rating;
+		console.log(rating);
+		await movie.save();
 		res.status(201).json({data: 'rating updated'})
 
 	} catch(err) {

@@ -29,30 +29,7 @@ export default function Feed({ user, handleLogout }) {
       console.log(err.message, "updateRating in Feed component error")
     }
   }
-  // C create in Crud for Likes
-  // we will invoke these functions when the heart is clicked in the post card,
-  // so we need to pass the function down to the postCard in order for it to use it
-//  async function addLike(postId) {
-//    try {
-//      const data = await likesAPI.create(postId);
-//      console.log(data, " this is from addLike");
-//      getPosts(); // < - will get all the posts and update the state, with our like added to the post
-//    } catch (err) {
-//      console.log(err.message);
-//    }
-//  }
 
-//  // we will invoke these functions when the heart is clicked in the post card,
-//  // so we need to pass the function down to the postCard in order for it to use it
-//  async function removeLike(likeId) {
-//    try {
-//      const data = await likesAPI.removeLike(likeId);
-//      getPosts(); // < - will get all the posts and update the state, with our like added to the post
-//    } catch (err) {
-//      console.log(err.message);
-//      setError(err.message)
-//    }
-//  }
 
 
   async function handleAddMovie(movie) {
@@ -102,7 +79,6 @@ export default function Feed({ user, handleLogout }) {
           <MovieFeed
             movies={movies}
             numMoviesCol={1}
-            isProfile={false}
             user={user}
             addRating={addRating}
             updateRating={updateRating}

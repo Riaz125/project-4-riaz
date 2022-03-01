@@ -27,11 +27,11 @@ export function create(movieId, rating){
 export function updateRating(ratingId, rating){
 	const formData = new FormData()
 	formData.append('rating', rating)
-	return fetch(`${BASE_URL}/ratings/${ratingId}`, { // <- this end point is communicating with the create route in /routes/likes.js on express server
+	return fetch(`${BASE_URL}/ratings/${ratingId}`, { 
 		method: 'PUT',
 		body: formData,
 		headers: {
-			'Authorization': 'Bearer ' + tokenService.getToken() // <- the jwt contains the user who is sending the like
+			'Authorization': 'Bearer ' + tokenService.getToken() // 
 		}
 	}).then(res => {
 		console.log(res.ok, " <- res.ok")
@@ -39,3 +39,12 @@ export function updateRating(ratingId, rating){
 		throw new Error('Error in updating the rating, check your express terminal!')
 	})
 }
+
+export function getAll(movieId) {
+	return fetch(`${BASE_URL}/movies/${movieId}/ratings`, {
+	  headers: {
+		'Authorization': 'Bearer ' + tokenService.getToken()
+	  }
+	})
+	.then(res => res.json());
+  }

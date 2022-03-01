@@ -36,10 +36,8 @@ function create(req, res){
 				photoUrl: data.Location
 			})
 
-			movie = await Movie.populate('user')
+			movie = await movie.populate('user')
 
-			// respond to the client
-			// What file on the client can we log out this response?
 			res.status(201).json({movie})
 
 
