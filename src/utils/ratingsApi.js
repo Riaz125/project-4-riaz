@@ -24,15 +24,18 @@ export function create(movieId, rating){
 	})
 }
 
-export function removeLike(ratingsId){
-	return fetch(`${BASE_URL}/likes/${ratingsId}`, {
-		method: 'DELETE',
-	    headers: {
+export function updateRating(ratingId, rating){
+	const formData = new FormData()
+	formData.append('rating', rating)
+	return fetch(`${BASE_URL}/ratings/${ratingId}`, { // <- this end point is communicating with the create route in /routes/likes.js on express server
+		method: 'PUT',
+		body: formData,
+		headers: {
 			'Authorization': 'Bearer ' + tokenService.getToken() // <- the jwt contains the user who is sending the like
-		}	
+		}
 	}).then(res => {
 		console.log(res.ok, " <- res.ok")
 		if(res.ok) return res.json();
-		throw new Error('Error in deleting the rating, check your express terminal!')
+		throw new Error('Error in updating the rating, check your express terminal!')
 	})
 }

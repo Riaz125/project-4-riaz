@@ -15,11 +15,18 @@ export default function Feed({ user, handleLogout }) {
   async function addRating(movieId, rating) {
     try {
       const data = await ratingsAPI.create(movieId, rating);
-      console.log(rating, "rating");
-      console.log(data, " this if from addRating");
       getMovies();
     } catch (err) {
       console.log(err.message, "addRating in Feed component error")
+    }
+  }
+
+  async function updateRating(ratingId, rating) {
+    try {
+      const data = await ratingsAPI.updateRating(ratingId, rating)
+      getMovies();
+    } catch (err) {
+      console.log(err.message, "updateRating in Feed component error")
     }
   }
   // C create in Crud for Likes
@@ -98,8 +105,8 @@ export default function Feed({ user, handleLogout }) {
             isProfile={false}
             user={user}
             addRating={addRating}
+            updateRating={updateRating}
             loading={loading}
-            //removeLike={removeLike}
           />
         </Grid.Column>
       </Grid.Row>

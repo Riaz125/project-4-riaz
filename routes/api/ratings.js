@@ -7,6 +7,6 @@ const upload = multer();
 // /api/posts/someId/likes
 router.post('/movies/:id/ratings', upload.single('rating'), ratingsCtrl.create)
 // /api/likes/:id
-//router.delete('/ratings/:id', ratingsCtrl.deleteLike)
+router.put('/ratings/:id', upload.single('rating'), ratingsCtrl.update)
 
 module.exports = router;

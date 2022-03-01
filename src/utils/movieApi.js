@@ -3,7 +3,6 @@ import tokenService from "./tokenService"
 const BASE_URL = '/api/movies/'
 
 export function create(postInfoFromTheForm){
-	debugger
 	return fetch(BASE_URL, {
 		method: 'POST',
 		body: postInfoFromTheForm,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Icon, Image, Rating } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
+import { updateRating } from '../../utils/ratingsApi';
 
 function MovieCard({movie, addRating, isProfile, user}) { 
 
@@ -38,6 +39,10 @@ function MovieCard({movie, addRating, isProfile, user}) {
 ////  const clickHandler = likedIndex > -1 ? () => removeLike(post.likes[likedIndex]._id) : () => addLike(post._id)
 //  // if the user hasn't liked the post
 //  // clickHandler = addLike
+const ratingIndex = movie.ratings.findIndex(rating => rating.userName === user.username)
+
+
+
 let total = 0;
 
 movie.ratings.forEach(function(rating) {
@@ -46,13 +51,17 @@ movie.ratings.forEach(function(rating) {
 
 let average = (total / movie.ratings.length);
 
-console.log(total, "total rating")
-console.log(movie.ratings.length, "ratings array length")
-console.log(average, "average")
+
 
 const handleRate = (e, { rating, maxRating }) => {
-    addRating(movie._id, rating)
-    console.log('handle rate is working')
+    if(ratingIndex > -1) {
+      updateRating(movie.ratings[ratingIndex]._id, rating)
+      console.log("updateRating is being called")
+    } else {
+      addRating(movie._id, rating)
+      console.log(ratingIndex, "ratingIndex")
+      console.log("addrating is being called")
+    }
   }
 
   return (
@@ -66,7 +75,7 @@ const handleRate = (e, { rating, maxRating }) => {
       <Card.Description>{movie.releaseYear}</Card.Description>
 	</Card.Content>
 	<Card.Content extra textAlign={"right"}>
-  <Rating icon='star' maxRating={5} onRate={handleRate} />
+  <Rating icon='star' defaultRating={average} maxRating={5} onRate={handleRate} />
 	  {average} Rating
 	</Card.Content>
   </Card>

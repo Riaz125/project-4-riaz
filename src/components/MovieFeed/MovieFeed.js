@@ -9,6 +9,7 @@ export default function MovieFeed({
   user,
   loading,
   addRating,
+  updateRating
 }) {
 
  
@@ -32,6 +33,7 @@ export default function MovieFeed({
           key={movie._id}
           user={user}
           addRating={addRating}
+          updateRating={updateRating}
         />
       );
     })}

@@ -1,14 +1,14 @@
 const Movie = require('../models/movie');
+const User = require('../models/user')
 
 module.exports = {
-    create
+    create,
+	update
 }
 
 
 
 async function create(req, res){
-	console.log(req.body, " <- req.body", req.file, " <photo", req.user, "<--- create ratings in controller")
-	console.log(req, "rating in create in controller")
 		try {
 			// model talking to mongodb
 			const movie = await Movie.findById(req.params.id);
@@ -28,10 +28,22 @@ async function create(req, res){
 
 
 		} catch(err){
-			console.log(err)
+
 			res.status(400).json({err})
 		}
  }
- 
+
+ async function update(req, res) {
+	console.log("update controller")
+	try {
+		const post = await Post.findOne({'rating._id': req.params.id, 'rating.userName': req.user.username});
+		await movieRating.save()
+		res.status(201).json({data: 'rating updated'})
+
+	} catch(err) {
+		console.log(err)
+		res.status(400).json({err})
+	}
+ }
 
 
