@@ -5,6 +5,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import Feed from "../Feed/Feed";
 import userService from "../../utils/userService";
+import ImdbPage from "../ImdbPage/ImdbPage";
 
 function App() {
   
@@ -36,6 +37,10 @@ function App() {
         path="/signup"
         element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
       />
+      <Route
+        path="/imdb"
+        element={<ImdbPage />}
+      />
     </Routes>
     )
   }
@@ -50,7 +55,12 @@ function App() {
         path="/signup"
         element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
       />
-      <Route path="/*" element={<Navigate to="/login" />} />
+      <Route path="/*" element={<Navigate to="/login" />} />      
+      <Route
+        path="/imdb"
+        element={<ImdbPage />}
+      />
+
     </Routes>
   );
 }

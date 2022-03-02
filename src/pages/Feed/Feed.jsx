@@ -3,7 +3,8 @@ import Header from "../../components/Header/Header";
 import AddMovie from "../../components/AddMovie/AddMovie";
 import MovieFeed from "../../components/MovieFeed/MovieFeed";
 import * as moviesAPI from "../../utils/movieApi";
-import * as ratingsAPI from '../../utils/ratingsApi'
+import * as ratingsAPI from '../../utils/ratingsApi';
+import * as imdbAPI from '../../utils/imdbApi';
 import { Grid } from "semantic-ui-react";
 
 export default function Feed({ user, handleLogout }) {
@@ -50,7 +51,7 @@ export default function Feed({ user, handleLogout }) {
   async function getMovies() {
     try {
       const data = await moviesAPI.getAll();
-      console.log(data, " this is data,");
+      console.log(data, " this is data frm getMovies");
       setMovies([...data.movies]);
     } catch (err) {
       console.log(err.message, " this is the error");

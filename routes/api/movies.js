@@ -7,7 +7,8 @@ const upload = multer(); // <- handles multipart/formdata requests(photos)
 
 // photo is the key on the formData object in the AddPost component
 router.post('/', isAuthenticated, upload.single('photo'), moviesCtrl.create);
-router.get('/', moviesCtrl.index)
+router.get('/', moviesCtrl.index);
+router.get('/imdb');
 
 
 /*---------- Protected Routes ----------*/
