@@ -10,7 +10,6 @@ module.exports = {
 
 async function create(req, res){
 		try {
-			// model talking to mongodb
 			const movie = await Movie.findById(req.params.id);
 
             movie.ratings.push({
@@ -21,9 +20,6 @@ async function create(req, res){
 
 
 			await movie.save()
-
-			// respond to the client
-			// What file on the client can we log out this response?
 			res.status(201).json({data: 'rating added'})
 
 

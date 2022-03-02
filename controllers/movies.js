@@ -56,9 +56,7 @@ function create(req, res){
 
 async function index(req, res) {
 	try {
-	  // this populates the user when you find the posts
-	  // so you'll have access to the users information
-	  // when you fetch teh posts
+
 	  const movies = await Movie.find({}).populate("user").exec();
 	  res.status(200).json({ movies: movies });
 	} catch (err) {

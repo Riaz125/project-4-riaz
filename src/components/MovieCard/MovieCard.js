@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card, Icon, Image, Rating } from 'semantic-ui-react'
-import { Link } from "react-router-dom";
+import { Card, Image, Rating } from 'semantic-ui-react'
 import { updateRating } from '../../utils/ratingsApi';
 
-function MovieCard({movie, addRating, isProfile, user}) { 
+function MovieCard({movie, addRating, user}) { 
 
 
 
@@ -36,11 +35,11 @@ const handleRate = (e, { rating, maxRating }) => {
 	<Card key={movie._id} raised>
 	<Image src={`${movie.photoUrl}`} wrapped ui={false} />
 	<Card.Content>
-	  <Card.Description>{movie.title}</Card.Description>
-      <Card.Description>{movie.director}</Card.Description>
-      <Card.Description>{movie.genres}</Card.Description>
-      <Card.Description>{movie.platforms}</Card.Description>
-      <Card.Description>{movie.releaseYear}</Card.Description>
+	  <Card.Description><h3>{movie.title}</h3></Card.Description>
+      <Card.Description>Director: {movie.director}</Card.Description>
+      <Card.Description>Genres: {movie.genres}</Card.Description>
+      <Card.Description>Platforms: {movie.platforms}</Card.Description>
+      <Card.Description>Release Year: {movie.releaseYear}</Card.Description>
 	</Card.Content>
 	<Card.Content extra textAlign={"right"}>
   <Rating icon='star' defaultRating={average} maxRating={5} onRate={handleRate} />

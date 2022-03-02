@@ -2,16 +2,12 @@ const express = require('express');
 const router = express.Router();
 const moviesCtrl = require('../../controllers/movies');
 const multer = require('multer');
-const upload = multer(); // <- handles multipart/formdata requests(photos)
-// /*---------- Public Routes ----------*/
-
-// photo is the key on the formData object in the AddPost component
+const upload = multer();
 router.post('/', isAuthenticated, upload.single('photo'), moviesCtrl.create);
 router.get('/', moviesCtrl.index);
 router.get('/imdb');
 
 
-/*---------- Protected Routes ----------*/
 function isAuthenticated(req, res, next){
 	if(req.user){
 		next()

@@ -4,11 +4,10 @@ import AddMovie from "../../components/AddMovie/AddMovie";
 import MovieFeed from "../../components/MovieFeed/MovieFeed";
 import * as moviesAPI from "../../utils/movieApi";
 import * as ratingsAPI from '../../utils/ratingsApi';
-import * as imdbAPI from '../../utils/imdbApi';
 import { Grid } from "semantic-ui-react";
 
 export default function Feed({ user, handleLogout }) {
-  const [movies, setMovies] = useState([]); // <- likes are inside of the each post in the posts array
+  const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   
