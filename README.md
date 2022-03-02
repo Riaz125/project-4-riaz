@@ -1,6 +1,6 @@
 # WhatToWatch
 
-WhatToWatch is a movie app that shows your new movies that you can watch. You can check recently released movies sorted according to their imdb score.
+WhatToWatch is a movie app that shows you new movies that you can watch. You can check recently released movies sorted according to their imdb score.
 
 
 ## Screenshots
